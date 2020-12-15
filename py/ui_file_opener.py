@@ -13,7 +13,7 @@ from matplotlib.backends.backend_qt5agg import FigureCanvas, NavigationToolbar2Q
 from matplotlib.figure import Figure
 
 
-uifile_1 = os.path.join("..","ui","plot_builder.ui"); # Enter file here.
+uifile_1 = os.path.join("..","ui","plot_builder_v2.py"); # Enter file here.
 uifile_2 = os.path.join("..","ui","data_window.ui"); # Enter file here.
 
 form_1, base_1 = uic.loadUiType(uifile_1)
