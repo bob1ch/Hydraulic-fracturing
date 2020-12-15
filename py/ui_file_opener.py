@@ -13,14 +13,15 @@ from matplotlib.backends.backend_qt5agg import FigureCanvas, NavigationToolbar2Q
 from matplotlib.figure import Figure
 
 
-uifile_1 = os.path.join("..","ui","plot_builder_v2.py"); # Enter file here.
+uifile_1 = os.path.join("..","ui","plot_builder_v2.ui"); # Enter file here.
 uifile_2 = os.path.join("..","ui","data_window.ui"); # Enter file here.
+css_filepath = os.path.join("..","ui","css","css.css");
 
 form_1, base_1 = uic.loadUiType(uifile_1)
 form_2, base_2 = uic.loadUiType(uifile_2)
 
 class Example(base_1, form_1):
-    def __init__(self):
+    def __init__(self,css_filepath):
         super().__init__()
         self.setupUi(self)
         #self.layout = QVBoxLayout(self)
@@ -41,7 +42,18 @@ class Example(base_1, form_1):
         #self.setLayout(layout)
         
         #####
+        ##http://doc.crossplatform.ru/qt/4.5.0/stylesheet-reference.html 
         
+        #set stylesheet
+        f = open(css_filepath, 'r');
+        css_string = f.read();
+        f.closed;     
+        
+        print(css_string);
+        
+        self.setStyleSheet(css_string);
+        
+        #self.setStyleSheet(css_string);
         
         self.fileOpen.clicked.connect(self.file_open_dialogue)
         self.buildBut.clicked.connect(self.build_plot)
@@ -130,6 +142,6 @@ class dataWindow(base_2, form_2):
 if __name__ == '__main__':
     pass;
     app = QApplication(sys.argv)
-    ex = Example()
+    ex = Example(css_filepath)
     ex.show()
     sys.exit(app.exec_())
