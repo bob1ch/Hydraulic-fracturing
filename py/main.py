@@ -17,16 +17,20 @@ from matplotlib.figure import Figure
 from engine import Engine; #custom file for computations
 
 uifile_0 = os.path.join("..","ui","start_window.ui"); # Enter file here.
+uifile_1 = os.path.join("..","ui","About.ui"); # Enter file here.
+uifile_2 = os.path.join("..","ui","Help.ui"); # Enter file here.
 uifile_3 = os.path.join("..","ui","input_window.ui"); # Enter file here.
-uifile_1 = os.path.join("..","ui","plot_builder_v2.ui"); # Enter file here.
-uifile_2 = os.path.join("..","ui","data_window.ui"); # Enter file here.
+
+
 #styles
 css_filepath = os.path.join("..","ui","css","css.css");
+css2_filepath = os.path.join("..","ui","css","css2.css");
 
 form_0, base_0 = uic.loadUiType(uifile_0)
 form_1, base_1 = uic.loadUiType(uifile_1)
 form_2, base_2 = uic.loadUiType(uifile_2)
 form_3, base_3 = uic.loadUiType(uifile_3)
+
 
 class CssMainWindow(QMainWindow):
     def __init__(self,css_filepath):
@@ -39,14 +43,14 @@ class CssMainWindow(QMainWindow):
         self.setStyleSheet(css_string); 
 
 class CssDialog(QDialog):
-    def __init__(self,css_filepath):
+    def __init__(self,css2_filepath):
         super().__init__();
         ##http://doc.crossplatform.ru/qt/4.5.0/stylesheet-reference.html         
         #set stylesheet
-        f = open(css_filepath, 'r');
+        f = open(css2_filepath, 'r');
         css_string = f.read();
         f.closed;     
-        self.setStyleSheet(css_string); 
+        self.setStyleSheet(css_string);
 
 
 class Start(CssMainWindow, form_0):
@@ -54,22 +58,72 @@ class Start(CssMainWindow, form_0):
         super().__init__(css_filepath);
         self.setupUi(self)
         self.css=css_filepath;
-        
+        self.css2=css2_filepath;
         #window properties of the main class
         self.inputWin=[];
         self.outputWin=[];
-        
+
         #test
         print('init completed');
         
         #setup button events
         self.btnInput.clicked.connect(self.openInputWindow)
+        self.btnAbout.clicked.connect(self.openAboutWindow)
+        self.btnHelp.clicked.connect(self.openHelpWindow)
 
     def openInputWindow(self):
         self.inputWin=InputWin(self.css);
         self.inputWin.show();
 
+    def openAboutWindow(self):
+        self.aboutWin = AboutWin(self.css2);
+        self.aboutWin.show();
+
+    def openHelpWindow(self):
+        self.helpWin = HelpWin(self.css2);
+        self.helpWin.show();
+
+class AboutWin(CssDialog, form_1):
+    def __init__(self,css_filepath):
+        super().__init__(css_filepath);
+        self.setupUi(self)
+        self.btnOk.clicked.connect(self.back_startWindow)
+    def back_startWindow(self):
+        self.hide()
+
+class HelpWin(CssDialog, form_2):
+    def __init__(self,css_filepath):
+        super().__init__(css_filepath);
+        self.setupUi(self)
+        self.btnOk.clicked.connect(self.back_startWindow)
+    def back_startWindow(self):
+        self.hide()
+
+
 class InputWin(CssDialog, form_3):
+    def __init__(self,css_filepath):
+        super().__init__(css_filepath);
+        self.setupUi(self)
+        self.btnOk.clicked.connect(self.solv)
+
+
+    def solv(self):
+        eng = Engine();
+        eng.compute()
+        print(eng.ef)
+
+        '''Depth = int(self.varDepth.text())
+        varThickness = int(self.varThickness.text())
+        varPoisson = int(self.varPoisson.text())
+        varPermeability = int(self.varPermeability.text())
+        varYoung = int(self.varYoung.text())
+        S = Depth + varYoung + varThickness + varPoisson + varPermeability
+        print(S)'''
+        #the way to initialize computations in the engine
+
+        
+
+'''class InputWin(CssDialog, form_3):
     def __init__(self,css_filepath):
         super().__init__(css_filepath);
         self.setupUi(self)
@@ -197,17 +251,20 @@ class dataWindow(base_2, form_2):
         model.setHorizontalHeaderLabels(column_names);            
         model.setVerticalHeaderLabels([str(v) for v in dataframe.index.values.tolist()]);
             
-        self.tableView.setModel(model);
-        
-        
-            
+        self.tableView.setModel(model);'''
+
+
+
+
+
+
 if __name__ == '__main__':
     pass;
     app = QApplication(sys.argv)
     ex = Start(css_filepath)
     ex.show()
-    
-    eng=Engine();
-    eng.compute();
-    
     sys.exit(app.exec_())
+
+
+
+
