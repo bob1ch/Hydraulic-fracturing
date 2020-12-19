@@ -11,7 +11,7 @@ class Engine():
         self.ef = 0
         self.data = {}
     def compute(self):
-        datafilenate = os.path.join('data.xlsx')
+        datafilenate = os.path.join('../data/data.xlsx')
         datas = pd.read_excel(datafilenate)
         self.data = {}
         for line in datas:
