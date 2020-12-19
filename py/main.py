@@ -24,7 +24,6 @@ uifile_3 = os.path.join("..","ui","input_window.ui"); # Enter file here.
 
 #styles
 css_filepath = os.path.join("..","ui","css","css.css");
-css2_filepath = os.path.join("..","ui","css","css2.css");
 
 form_0, base_0 = uic.loadUiType(uifile_0)
 form_1, base_1 = uic.loadUiType(uifile_1)
@@ -47,7 +46,7 @@ class CssDialog(QDialog):
         super().__init__();
         ##http://doc.crossplatform.ru/qt/4.5.0/stylesheet-reference.html         
         #set stylesheet
-        f = open(css2_filepath, 'r');
+        f = open(css_filepath, 'r');
         css_string = f.read();
         f.closed;     
         self.setStyleSheet(css_string);
@@ -58,7 +57,6 @@ class Start(CssMainWindow, form_0):
         super().__init__(css_filepath);
         self.setupUi(self)
         self.css=css_filepath;
-        self.css2=css2_filepath;
         #window properties of the main class
         self.inputWin=[];
         self.outputWin=[];
@@ -76,11 +74,11 @@ class Start(CssMainWindow, form_0):
         self.inputWin.show();
 
     def openAboutWindow(self):
-        self.aboutWin = AboutWin(self.css2);
+        self.aboutWin = AboutWin(self.css);
         self.aboutWin.show();
 
     def openHelpWindow(self):
-        self.helpWin = HelpWin(self.css2);
+        self.helpWin = HelpWin(self.css);
         self.helpWin.show();
 
 class AboutWin(CssDialog, form_1):
