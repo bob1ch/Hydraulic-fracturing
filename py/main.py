@@ -9,6 +9,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+import numpy as np
 
 from matplotlib.backends.backend_qt5agg import FigureCanvas,\
                      NavigationToolbar2QT as NavigationToolbar
@@ -20,6 +21,7 @@ uifile_0 = os.path.join("..","ui","start_window.ui"); # Enter file here.
 uifile_1 = os.path.join("..","ui","About.ui"); # Enter file here.
 uifile_2 = os.path.join("..","ui","Help.ui"); # Enter file here.
 uifile_3 = os.path.join("..","ui","input_window.ui"); # Enter file here.
+uifile_4 = os.path.join("..","ui","saaa.ui"); # Enter file here.
 
 
 #styles
@@ -29,6 +31,7 @@ form_0, base_0 = uic.loadUiType(uifile_0)
 form_1, base_1 = uic.loadUiType(uifile_1)
 form_2, base_2 = uic.loadUiType(uifile_2)
 form_3, base_3 = uic.loadUiType(uifile_3)
+form_4, base_4 = uic.loadUiType(uifile_4)
 
 
 class CssMainWindow(QMainWindow):
@@ -68,6 +71,7 @@ class Start(CssMainWindow, form_0):
         self.btnInput.clicked.connect(self.openInputWindow)
         self.btnAbout.clicked.connect(self.openAboutWindow)
         self.btnHelp.clicked.connect(self.openHelpWindow)
+        self.btnOutput.clicked.connect(self.opensaaaWindow)
 
     def openInputWindow(self):
         self.inputWin=InputWin(self.css);
@@ -80,6 +84,12 @@ class Start(CssMainWindow, form_0):
     def openHelpWindow(self):
         self.helpWin = HelpWin(self.css);
         self.helpWin.show();
+    def opensaaaWindow(self):
+        self.saaaWin = SaaaWin(self.css);
+        self.saaaWin.show();
+
+
+
 
 class AboutWin(CssDialog, form_1):
     def __init__(self,css_filepath):
@@ -110,6 +120,33 @@ class InputWin(CssDialog, form_3):
         eng.compute()
         print(eng.ef)
 
+
+# Ползунки и крутилка
+class SaaaWin(CssDialog, form_4):
+    def __init__(self, css_filepath):
+        super().__init__(css_filepath);
+        self.setupUi(self)
+        self.sld1.setRange(0,50) #Устанавливаем минимальное и максимальное значение для ползунка 1
+        self.sld2.setRange(0,50) #Устанавливаем минимальное и максимальное значение для ползунка 2
+        self.sld3.setRange(0,50) #Устанавливаем минимальное и максимальное значение для ползунка 3
+        self.dl1.setRange(-45,45) #Устанавливаем минимальное и максимальное значение для крутилки
+        self.sld1.valueChanged.connect(self.Reset) #Событие
+        self.sld2.valueChanged.connect(self.Reset) #Событие
+        self.sld3.valueChanged.connect(self.Reset) #Событие
+        self.dl1.valueChanged.connect(self.Reset) #Событие
+    def Reset(self):
+        f=self.dl1.value() #Значение крутилки
+        self.lb4.setText(str('Угол: ' + str(f))) #Изменение текста
+        g = self.sld1.value() #Значение ползунка 1
+        self.lb1.setText(str('Глубина: ' + str(g))) #Изменение текста
+        h = self.sld2.value() #Значение ползунка 2
+        self.lb2.setText(str('Ширина: ' + str(h))) #Изменение текста
+        d = self.sld3.value() #Значение ползунка 3
+        self.lb3.setText(str('Длина: ' + str(d))) #Изменение текста
+        W = d*h*g + 0.5*h*d**2 * np.tan(f/180*3.14)
+        self.lbl.setText(str('Объем: ' + str(W))) #Изменение текста
+
+
         '''Depth = int(self.varDepth.text())
         varThickness = int(self.varThickness.text())
         varPoisson = int(self.varPoisson.text())
@@ -123,8 +160,7 @@ class InputWin(CssDialog, form_3):
 
 '''class InputWin(CssDialog, form_3):
     def __init__(self,css_filepath):
-        super().__init__(css_filepath);
-        self.setupUi(self)
+        super().__init__(css_filepath);        self.setupUi(self)
         
         #the way to initialize computations in the engine
         eng.compute(); 
