@@ -27,7 +27,7 @@
      <string>Input</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="bntHelp">
+   <widget class="QPushButton" name="btnHelp">
     <property name="geometry">
      <rect>
       <x>270</x>
