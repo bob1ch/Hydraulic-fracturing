@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QApplication,QWidget,QPlainTextEdit
+from PyQt5.QtWidgets import QApplication,QWidget,QPlainTextEdit,QMessageBox,QLineEdit
 from PyQt5.QtWidgets import QScrollArea,QVBoxLayout, QAbstractItemView, QListWidget,\
                         QListWidgetItem, QPushButton, QFileDialog,QDialog,QMainWindow
 from PyQt5.QtCore import pyqtSlot
@@ -112,12 +112,48 @@ class InputWin(CssDialog, form_3):
     def __init__(self,css_filepath):
         super().__init__(css_filepath);
         self.setupUi(self)
+        
         self.btnOk.clicked.connect(self.solv)
-
+            
 
     def solv(self):
+        
+       
+        QMessageBox.about(self, "Title", ("Value="+self.varDepth.text()))
+        
+        param_dictionary={};
+        
+        for mstr in self.__dict__:
+            try:
+                print(mstr);
+                #print(type(eval('self.'+mstr)));
+                if type(eval('self.'+mstr)) == QLineEdit:
+                    print('Object is line edit text field');
+                    param_dictionary.update({mstr:eval('self.'+mstr+'.text()')})
+            except:
+                print('something went wrong :(');
+        
+        for key in [*param_dictionary]:
+            try:
+               param_dictionary[key]= float(param_dictionary[key]);
+            except:
+               QMessageBox.about(self,'',('error in '+key));
+               return;
+        
+        
         eng = Engine();
-        eng.compute()
+        eng.compute2(param_dictionary); #передача параметров в движОк
+        
+        
+        print(param_dictionary);
+        self.close();
+        """
+        msg = QMessageBox();
+        msg.setWindowTitle("FYI!")
+        msg.setText("Value="+self.varDepth.text())
+        msg.setDefaultButton(QMessageBox.Ok)
+        msg.exec_();
+        """
         print(eng.ef)
 
 

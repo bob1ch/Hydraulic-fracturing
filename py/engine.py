@@ -10,6 +10,15 @@ class Engine():
         print('the Engine has been initialized');
         self.ef = 0
         self.data = {}
+    def compute2(self,params):
+        print('Engine has been activated')
+        print(params);
+        
+        for key in [*params]: #параметр "глубина" (Depth), не зная точное имя поля
+            if 'depth' in key.lower():
+                print('Значение глубины хранится в параметре с ключом: '+key);
+        
+        
     def compute(self):
         datafilenate = os.path.join('../data/data.xlsx')
         datas = pd.read_excel(datafilenate)
