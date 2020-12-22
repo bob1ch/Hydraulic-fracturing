@@ -8,14 +8,15 @@ http://doc.crossplatform.ru/qt/4.5.0/stylesheet-reference.html
 
 QMainWindow{
                     background: #404040;
-
+                    
     }
             }
             
 QDialog{
                 background: #404040;
             }
-            
+
+QLabel { color : white; }            
             
 QPushButton {
      border: 2px solid #8f8f91;
