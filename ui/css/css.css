@@ -7,13 +7,13 @@ http://doc.crossplatform.ru/qt/4.5.0/stylesheet-reference.html
 */
 
 QMainWindow{
-                    background: #8f8f91;
+                    background: #404040;
 
     }
             }
             
 QDialog{
-                background: #8f8f91;
+                background: #404040;
             }
             
             
@@ -30,7 +30,7 @@ QPushButton {
 
 QPushButton:pressed {
         background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-        stop: 0 #dadbde, stop: 1 #f6f7fa);
+        stop: 0 #FFDD00, stop: 1 #FFDD00);
     }
 
 QPushButton:flat {
