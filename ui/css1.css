@@ -1,0 +1,38 @@
+/*
+https://stackoverflow.com/questions/22504421/how-to-apply-style-sheet-to-a-custom-widget-in-pyqt 
+*/
+
+/*
+http://doc.crossplatform.ru/qt/4.5.0/stylesheet-reference.html 
+*/
+
+QMainWindow{
+                    background: #404040;
+
+    }
+            }
+            
+QDialog{
+                background: #404040;
+            }
+            
+            
+QPushButton {
+     border: 2px solid #8f8f91;
+     border-radius: 6px;
+     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1.5,
+                           stop: 0 #ffffff, stop: 1 #b2b2b2);
+                           min-width: 80px;
+    }
+
+
+
+
+QPushButton:pressed {
+        background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+        stop: 0 #FFDD00, stop: 1 #FFDD00);
+    }
+
+QPushButton:flat {
+    border: none; /* для плоской кнопки границы нет */
+    }
