@@ -12,6 +12,7 @@ import os
 import numpy as np
 import pickle
 
+
 from matplotlib.backends.backend_qt5agg import FigureCanvas,\
                      NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
@@ -33,6 +34,8 @@ form_1, base_1 = uic.loadUiType(uifile_1)
 form_2, base_2 = uic.loadUiType(uifile_2)
 form_3, base_3 = uic.loadUiType(uifile_3)
 form_4, base_4 = uic.loadUiType(uifile_4)
+
+cached_data_fn='config.bak';
 
 
 class CssMainWindow(QMainWindow):
@@ -112,20 +115,46 @@ class HelpWin(CssDialog, form_2):
 class InputWin(CssDialog, form_3):
     def __init__(self,css_filepath):
         super().__init__(css_filepath);
-        self.setupUi(self)
+        self.setupUi(self);
         
         self.btnOk.clicked.connect(self.solv)
+        
+        #loading cached data 
+        if (os.path.exists(cached_data_fn)):
+            self.initUI();    
             
+                   
+            
+    def initUI(self):
+        
+        buttonReply = QMessageBox.question(self, 'Configuration was found..', "Load previous config?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+        if buttonReply == QMessageBox.Yes:
+            self.load_config();
+        else:
+            print('Do not load...');
+
+        self.show()
+        
+    def load_config(self):
+        f = open(cached_data_fn,'rb')  
+        param_dictionary=pickle.load(f);
+        
+        for key in param_dictionary:
+            #command='self.'+key+'.setText('+'\"'+str(param_dictionary[key])+'\"'+')';
+            command='self.%s.setText(\"%s\")'%(key,param_dictionary[key]);
+            print(command);
+            eval(command);
 
     def solv(self):
-        
        
-        QMessageBox.about(self, "Title", ("Value="+self.varDepth.text()))
+        #QMessageBox.about(self, "Title", ("Value="+self.varDepth.text()))
         
+        """
         f = open('cache','rb')  
-        
         param_dictionary_temp=pickle.load(f);
         print('TEST_ME', param_dictionary)
+        """
+        param_dictionary={};
         
         for mstr in self.__dict__:
             try:
@@ -148,7 +177,7 @@ class InputWin(CssDialog, form_3):
         eng.compute2(param_dictionary); #передача параметров в движОк
         
         #сохранялка
-        f = open('cache','wb')                            
+        f = open(cached_data_fn,'wb')                            
         pickle.dump(param_dictionary,f)
         print('OK')
         
