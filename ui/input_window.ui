@@ -141,19 +141,6 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="btnExport">
-   <property name="geometry">
-    <rect>
-     <x>250</x>
-     <y>190</y>
-     <width>81</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Export..</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="btnOk">
    <property name="geometry">
     <rect>
@@ -165,19 +152,6 @@
    </property>
    <property name="text">
     <string>Ok</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btnInport">
-   <property name="geometry">
-    <rect>
-     <x>170</x>
-     <y>190</y>
-     <width>81</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Import..</string>
    </property>
   </widget>
  </widget>
