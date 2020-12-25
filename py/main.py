@@ -10,6 +10,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 import numpy as np
+import pickle
 
 from matplotlib.backends.backend_qt5agg import FigureCanvas,\
                      NavigationToolbar2QT as NavigationToolbar
@@ -121,7 +122,10 @@ class InputWin(CssDialog, form_3):
        
         QMessageBox.about(self, "Title", ("Value="+self.varDepth.text()))
         
-        param_dictionary={};
+        f = open('cache','rb')  
+        
+        param_dictionary_temp=pickle.load(f);
+        print('TEST_ME', param_dictionary)
         
         for mstr in self.__dict__:
             try:
@@ -140,10 +144,13 @@ class InputWin(CssDialog, form_3):
                QMessageBox.about(self,'',('error in '+key));
                return;
         
-        
         eng = Engine();
         eng.compute2(param_dictionary); #передача параметров в движОк
         
+        #сохранялка
+        f = open('cache','wb')                            
+        pickle.dump(param_dictionary,f)
+        print('OK')
         
         print(param_dictionary);
         self.close();
