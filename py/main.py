@@ -13,17 +13,21 @@ import numpy as np
 import pickle
 
 
-from matplotlib.backends.backend_qt5agg import FigureCanvas,\
-                     NavigationToolbar2QT as NavigationToolbar
-from matplotlib.figure import Figure
+#from matplotlib.backends.backend_qt5agg import FigureCanvas,\
+#                     NavigationToolbar2QT as NavigationToolbar
+#from matplotlib.figure import Figure
 
-from engine import Engine; #custom file for computations
+#from engine import Engine; #custom file for computations
+
+
+from S_engine import Engine; #custom file for computations
+
 
 uifile_0 = os.path.join("..","ui","start_window.ui"); # Enter file here.
 uifile_1 = os.path.join("..","ui","About.ui"); # Enter file here.
 uifile_2 = os.path.join("..","ui","Help.ui"); # Enter file here.
 uifile_3 = os.path.join("..","ui","input_window.ui"); # Enter file here.
-uifile_4 = os.path.join("..","ui","saaa.ui"); # Enter file here.
+uifile_4 = os.path.join("..","ui","output_window.ui"); # Enter file here.
 
 
 #styles
@@ -75,7 +79,7 @@ class Start(CssMainWindow, form_0):
         self.btnInput.clicked.connect(self.openInputWindow)
         self.btnAbout.clicked.connect(self.openAboutWindow)
         self.btnHelp.clicked.connect(self.openHelpWindow)
-        self.btnOutput.clicked.connect(self.opensaaaWindow)
+        self.btnOutput.clicked.connect(self.openoutputWindow)
 
     def openInputWindow(self):
         self.inputWin=InputWin(self.css);
@@ -88,9 +92,9 @@ class Start(CssMainWindow, form_0):
     def openHelpWindow(self):
         self.helpWin = HelpWin(self.css);
         self.helpWin.show();
-    def opensaaaWindow(self):
-        self.saaaWin = SaaaWin(self.css);
-        self.saaaWin.show();
+    def openoutputWindow(self):
+        self.outputWin = OutputWin(self.css);
+        self.outputWin.show();
 
 
 
@@ -172,9 +176,9 @@ class InputWin(CssDialog, form_3):
             except:
                QMessageBox.about(self,'',('error in '+key));
                return;
-        
+        print( param_dictionary)
         eng = Engine();
-        eng.compute2(param_dictionary); #передача параметров в движОк
+        eng.compute(param_dictionary); #передача параметров в движОк
         
         #сохранялка
         f = open(cached_data_fn,'wb')                            
@@ -183,14 +187,24 @@ class InputWin(CssDialog, form_3):
         
         print(param_dictionary);
         self.close();
+        wprint(eng.ef)
+
+class OutputWin(CssDialog, form_4):
+    def __init__(self, css_filepath):
+        super().__init__(css_filepath);
+        self.setupUi(self)
+
+
+
         """
         msg = QMessageBox();
         msg.setWindowTitle("FYI!")
         msg.setText("Value="+self.varDepth.text())
         msg.setDefaultButton(QMessageBox.Ok)
         msg.exec_();
-        """
-        print(eng.ef)
+      
+       
+     
 
 
 # Ползунки и крутилка
@@ -218,7 +232,7 @@ class SaaaWin(CssDialog, form_4):
         W = d*h*g + 0.5*h*d**2 * np.tan(f/180*3.14)
         self.lbl.setText(str('Объем: ' + str(W))) #Изменение текста
 
-
+        """
         '''Depth = int(self.varDepth.text())
         varThickness = int(self.varThickness.text())
         varPoisson = int(self.varPoisson.text())
