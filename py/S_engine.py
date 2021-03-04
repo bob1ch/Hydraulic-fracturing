@@ -32,6 +32,8 @@ class Engine():
         ro_p = self.data['ro_p']   # плотность пропанта кг/м3
         mu_g = self.data['mu_g']  # Па*с вяз-ть жидкости
         ro_g =  self.data['ro_g'] # кг/м3 плотность жидкости
+        
+        h = self.data['h'] #разбуренный интервал пласта
 
         Qr = 0.035 # Подача при рабочем давлении
         Pr = 40 #Рабочее давление
@@ -59,7 +61,7 @@ class Engine():
 
         Pu = P_razr-ro_pg*Lc*9.81*10**(-6)+Ptr
 
-        n_a = Pu * 0.035 / (Pr * Qr * K) + N  # Число агригатов
+        n_a = Pu * 0.035 / (Pr * Qr * K) + N  # Число агрегатов
         V_pg = 0.785*d*Lc # Объем продавочной жидкости
 
 
@@ -67,9 +69,12 @@ class Engine():
 
         t = (V_g+V_pg)/Qr # продолжительность гидроразрыва в секундах
 
-        h = 14.3 #Вскрытая часть пласта?
+        #h = 14.3 #Вскрытая часть пласта?
 
         length = m.sqrt(V_g * 10**10 / (5.6 * (1 - n ** 2) * h * (P_razr - Pgg)))
         Width = (4 * (1 - n ** 2) * length * (P_razr - Pgg)) / 10**10
-
+        
+        output_dictionary={'n_a':n_a,'V_pg':V_pg,'V_g':V_g,'t':t,'length':length,'Width':Width}
+        
+        return output_dictionary;
 
