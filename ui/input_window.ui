@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>411</width>
-    <height>243</height>
+    <width>440</width>
+    <height>191</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,7 +26,7 @@
     <string>Model setup:</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="varDepth">
+  <widget class="QLineEdit" name="Lc">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -46,7 +46,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Well depth, m:</string>
+    <string>Глубина, м:</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
@@ -54,15 +54,15 @@
     <rect>
      <x>20</x>
      <y>60</y>
-     <width>121</width>
-     <height>16</height>
+     <width>131</width>
+     <height>21</height>
     </rect>
    </property>
    <property name="text">
-    <string>Layer thickness, m:</string>
+    <string>Плотность , кг/м3: </string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="varThickness">
+  <widget class="QLineEdit" name="ro">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -82,10 +82,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>Poisson ratio:</string>
+    <string>Диаметр труб, м:</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="varPoisson">
+  <widget class="QLineEdit" name="d">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -95,7 +95,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="varPermeability">
+  <widget class="QLineEdit" name="n">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -115,27 +115,14 @@
     </rect>
    </property>
    <property name="text">
-    <string>Permeability initial:</string>
+    <string>Коэфициент Пуассона:</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_6">
+  <widget class="QLineEdit" name="C_p">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>150</y>
-     <width>121</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Young modulus:</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="varYoung">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>150</y>
+     <x>350</x>
+     <y>30</y>
      <width>40</width>
      <height>21</height>
     </rect>
@@ -144,14 +131,96 @@
   <widget class="QPushButton" name="btnOk">
    <property name="geometry">
     <rect>
-     <x>332</x>
-     <y>190</y>
+     <x>330</x>
+     <y>150</y>
      <width>61</width>
      <height>32</height>
     </rect>
    </property>
    <property name="text">
     <string>Ok</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="ro_g">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>120</y>
+     <width>40</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="ro_p">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>60</y>
+     <width>41</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="mu_g">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>90</y>
+     <width>41</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>90</y>
+     <width>141</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Вязкость жидкости, Па*с:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>30</y>
+     <width>131</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Конц-ия пропанта, кг/м3:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>60</y>
+     <width>141</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Плотность прпанта, кг/м3: </string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_9">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>120</y>
+     <width>151</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Плотность жидкости, кг/м3: </string>
    </property>
   </widget>
  </widget>
