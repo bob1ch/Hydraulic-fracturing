@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>440</width>
-    <height>191</height>
+    <width>516</width>
+    <height>218</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -29,7 +29,7 @@
   <widget class="QLineEdit" name="Lc">
    <property name="geometry">
     <rect>
-     <x>150</x>
+     <x>100</x>
      <y>30</y>
      <width>41</width>
      <height>21</height>
@@ -65,7 +65,7 @@
   <widget class="QLineEdit" name="ro">
    <property name="geometry">
     <rect>
-     <x>150</x>
+     <x>230</x>
      <y>60</y>
      <width>41</width>
      <height>21</height>
@@ -88,7 +88,7 @@
   <widget class="QLineEdit" name="d">
    <property name="geometry">
     <rect>
-     <x>150</x>
+     <x>230</x>
      <y>90</y>
      <width>40</width>
      <height>21</height>
@@ -98,7 +98,7 @@
   <widget class="QLineEdit" name="n">
    <property name="geometry">
     <rect>
-     <x>150</x>
+     <x>230</x>
      <y>120</y>
      <width>40</width>
      <height>21</height>
@@ -121,7 +121,7 @@
   <widget class="QLineEdit" name="C_p">
    <property name="geometry">
     <rect>
-     <x>350</x>
+     <x>460</x>
      <y>30</y>
      <width>40</width>
      <height>21</height>
@@ -131,8 +131,8 @@
   <widget class="QPushButton" name="btnOk">
    <property name="geometry">
     <rect>
-     <x>330</x>
-     <y>150</y>
+     <x>430</x>
+     <y>160</y>
      <width>61</width>
      <height>32</height>
     </rect>
@@ -144,7 +144,7 @@
   <widget class="QLineEdit" name="ro_g">
    <property name="geometry">
     <rect>
-     <x>350</x>
+     <x>460</x>
      <y>120</y>
      <width>40</width>
      <height>21</height>
@@ -154,7 +154,7 @@
   <widget class="QLineEdit" name="ro_p">
    <property name="geometry">
     <rect>
-     <x>350</x>
+     <x>460</x>
      <y>60</y>
      <width>41</width>
      <height>21</height>
@@ -164,7 +164,7 @@
   <widget class="QLineEdit" name="mu_g">
    <property name="geometry">
     <rect>
-     <x>350</x>
+     <x>460</x>
      <y>90</y>
      <width>41</width>
      <height>21</height>
@@ -174,9 +174,9 @@
   <widget class="QLabel" name="label_6">
    <property name="geometry">
     <rect>
-     <x>200</x>
+     <x>280</x>
      <y>90</y>
-     <width>141</width>
+     <width>171</width>
      <height>16</height>
     </rect>
    </property>
@@ -187,9 +187,9 @@
   <widget class="QLabel" name="label_7">
    <property name="geometry">
     <rect>
-     <x>200</x>
+     <x>280</x>
      <y>30</y>
-     <width>131</width>
+     <width>171</width>
      <height>16</height>
     </rect>
    </property>
@@ -200,9 +200,9 @@
   <widget class="QLabel" name="label_8">
    <property name="geometry">
     <rect>
-     <x>200</x>
+     <x>280</x>
      <y>60</y>
-     <width>141</width>
+     <width>171</width>
      <height>21</height>
     </rect>
    </property>
@@ -213,14 +213,50 @@
   <widget class="QLabel" name="label_9">
    <property name="geometry">
     <rect>
-     <x>200</x>
+     <x>280</x>
      <y>120</y>
-     <width>151</width>
+     <width>171</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
     <string>Плотность жидкости, кг/м3: </string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnLoadDef">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>160</y>
+     <width>130</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Load defaults</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="h">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>30</y>
+     <width>41</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_10">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>30</y>
+     <width>91</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Интервал, м:</string>
    </property>
   </widget>
  </widget>
