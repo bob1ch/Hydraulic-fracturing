@@ -50,7 +50,8 @@ class CssMainWindow(QMainWindow):
         f = open(css_filepath, 'r');
         css_string = f.read();
         f.closed;     
-        self.setStyleSheet(css_string); 
+        self.setStyleSheet(css_string);
+        self.output_dictionary={};
 
 class CssDialog(QDialog):
     def __init__(self,css2_filepath):
@@ -104,9 +105,15 @@ class AboutWin(CssDialog, form_1):
         super().__init__(css_filepath);
         self.setupUi(self)
         self.btnOk.clicked.connect(self.back_startWindow)
+        
+        
     def back_startWindow(self):
         self.hide()
-
+    
+    
+        
+    
+    
 class HelpWin(CssDialog, form_2):
     def __init__(self,css_filepath):
         super().__init__(css_filepath);
@@ -121,6 +128,7 @@ class InputWin(CssDialog, form_3):
         super().__init__(css_filepath);
         self.setupUi(self);
         
+        self.btnLoadDef.clicked.connect(self.load_defaults);
         self.btnOk.clicked.connect(self.solv)
         
         #loading cached data 
@@ -148,7 +156,20 @@ class InputWin(CssDialog, form_3):
             command='self.%s.setText(\"%s\")'%(key,param_dictionary[key]);
             print(command);
             eval(command);
-
+    
+    def load_defaults(self):
+        try:
+            defaults={'Lc':2467,'ro':2600,'d':0.076,'n':0.25,'C_p':360,'h':14.3,'ro_p':2700,\
+                      'mu_g':0.285,'ro_g':950};
+            for key in defaults:
+                command='self.%s.setText(\"%s\")'%(key,defaults[key]);
+                print(command);
+                eval(command);
+            print('Defaults have been loaded');
+        except:
+            print('Unable to load defaults');
+    
+        
     def solv(self):
        
         #QMessageBox.about(self, "Title", ("Value="+self.varDepth.text()))
@@ -178,7 +199,7 @@ class InputWin(CssDialog, form_3):
                return;
         print( param_dictionary)
         eng = Engine();
-        eng.compute(param_dictionary); #передача параметров в движОк
+        ex.output_dictionary=eng.compute(param_dictionary); #передача параметров в движОк
         
         #сохранялка
         f = open(cached_data_fn,'wb')                            
@@ -186,16 +207,24 @@ class InputWin(CssDialog, form_3):
         print('OK')
         
         print(param_dictionary);
+        ex.openoutputWindow();
         self.close();
-        wprint(eng.ef)
+        #print(eng.ef)
 
 class OutputWin(CssDialog, form_4):
     def __init__(self, css_filepath):
         super().__init__(css_filepath);
         self.setupUi(self)
+        self.load_output();
 
-
-
+    def load_output(self):
+        try:
+            for key in ex.output_dictionary:
+                command='self.%s.setText(\"%s\")'%(key,ex.output_dictionary[key]);
+                eval(command);
+            print('Output has been loaded');
+        except:
+            print('Unable to load output data');
         """
         msg = QMessageBox();
         msg.setWindowTitle("FYI!")
