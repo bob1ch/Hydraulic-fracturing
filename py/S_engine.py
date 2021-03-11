@@ -58,7 +58,7 @@ class Engine():
 
         Re = 4 * 0.035 * ro_pg / 3.14 / d / mu_pg
 
-        limbda = 0.039
+        limbda = 64/Re
         print(limbda)
 
         Ptr = 8 * limbda * Lc * ro_pg * 0.0000087 ** 2 / (3.14 ** 2 * d ** 5)  # Потери на трение
@@ -68,7 +68,7 @@ class Engine():
         # Pu = 17.47
         print(Pu)
 
-        n_a = Pu * 0.15 / (Pr * Qr * K) + N  # Число агрегатов
+        n_a = round(Pu * 0.15 / (Pr * Qr * K) + N, 1)  # Число агрегатов
         print(n_a)
         V_pg = 0.785 * d ** 2 * Lc  # Объем продавочной жидкости
 
