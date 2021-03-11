@@ -93,6 +93,7 @@ class Start(CssMainWindow, form_0):
     def openHelpWindow(self):
         self.helpWin = HelpWin(self.css);
         self.helpWin.show();
+
     def openoutputWindow(self):
         self.outputWin = OutputWin(self.css);
         self.outputWin.show();
@@ -159,8 +160,8 @@ class InputWin(CssDialog, form_3):
     
     def load_defaults(self):
         try:
-            defaults={'Lc':2467,'ro':2600,'d':0.076,'n':0.25,'C_p':360,'h':14.3,'ro_p':2700,\
-                      'mu_g':0.285,'ro_g':950};
+            defaults={'Lc':2467,'ro':2600,'d':0.076,'n':0.3,'C_p':300,'h':14.3,'ro_p':3000,\
+                      'mu_g':0.285,'ro_g':950, 'Q_p': 7500, 'Pr':29.8, 'Qr':0.022};
             for key in defaults:
                 command='self.%s.setText(\"%s\")'%(key,defaults[key]);
                 print(command);
@@ -171,6 +172,7 @@ class InputWin(CssDialog, form_3):
     
         
     def solv(self):
+
        
         #QMessageBox.about(self, "Title", ("Value="+self.varDepth.text()))
         
@@ -209,6 +211,11 @@ class InputWin(CssDialog, form_3):
         print(param_dictionary);
         ex.openoutputWindow();
         self.close();
+       
+
+
+
+
         #print(eng.ef)
 
 class OutputWin(CssDialog, form_4):
