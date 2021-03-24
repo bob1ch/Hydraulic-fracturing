@@ -12,6 +12,15 @@ import os
 import numpy as np
 import pickle
 
+"""
+Доделать (обновлено 24.03.2021):
+1) Уточнить формулы и размерности ширины и длины трещины
+2) Округление числа агрегатов до ближайшего большего значения
+3) Проверить размерности входных и выходных значений
+
+"""
+
+
 
 #from matplotlib.backends.backend_qt5agg import FigureCanvas,\
 #                     NavigationToolbar2QT as NavigationToolbar
@@ -161,7 +170,7 @@ class InputWin(CssDialog, form_3):
     def load_defaults(self):
         try:
             defaults={'Lc':2467,'ro':2600,'d':0.076,'n':0.3,'C_p':300,'h':14.3,'ro_p':3000,\
-                      'mu_g':0.285,'ro_g':950, 'Q_p': 7500, 'Pr':29.8, 'Qr':0.022};
+                      'mu_g':0.285,'ro_g':950, 'Q_p': 7500, 'Pr':29.8, 'Qr':0.022,'sigma_pl':1.5};
             for key in defaults:
                 command='self.%s.setText(\"%s\")'%(key,defaults[key]);
                 print(command);
