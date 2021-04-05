@@ -75,7 +75,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Time processing:</string>
+    <string>Time processing, min:</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
@@ -153,7 +153,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Fracture width, m</string>
+    <string>Fracture width, cm</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="Width">
