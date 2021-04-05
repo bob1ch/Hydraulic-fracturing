@@ -32,6 +32,12 @@ import pickle
 from S_engine import Engine; #custom file for computations
 
 
+#to make working exe
+cur_dir=os.path.dirname(os.path.realpath(__file__));
+os.chdir(cur_dir);
+
+
+
 uifile_0 = os.path.join("..","ui","start_window.ui"); # Enter file here.
 uifile_1 = os.path.join("..","ui","About.ui"); # Enter file here.
 uifile_2 = os.path.join("..","ui","Help.ui"); # Enter file here.
