@@ -29,9 +29,10 @@ import pickle
 
 #from engine import Engine; #custom file for computations
 
-
 from S_engine import Engine; #custom file for computations
 
+print("changing directory to "+os.path.dirname(__file__));
+os.chdir(os.path.dirname(__file__));
 
 uifile_0 = os.path.join("..","ui","start_window.ui"); # Enter file here.
 uifile_1 = os.path.join("..","ui","About.ui"); # Enter file here.
@@ -135,7 +136,13 @@ class HelpWin(CssDialog, form_2):
         self.hide()
     
     def openPDF(self):
-        os.startfile("help.pdf")
+        filepath=os.path.join('..','man','help.pdf');
+        if platform.system() == 'Darwin':       # macOS
+            subprocess.call(('open', filepath));
+        elif platform.system() == 'Windows':    # Windows
+            os.startfile(filepath)
+        else:                                   # linux variants
+            subprocess.call(('xdg-open', filepath));
        
 class InputWin(CssDialog, form_3):
     def __init__(self,css_filepath):
@@ -421,11 +428,6 @@ class dataWindow(base_2, form_2):
         model.setVerticalHeaderLabels([str(v) for v in dataframe.index.values.tolist()]);
             
         self.tableView.setModel(model);'''
-
-
-
-
-
 
 if __name__ == '__main__':
     pass;
