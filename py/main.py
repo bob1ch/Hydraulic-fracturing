@@ -1,14 +1,15 @@
 import sys
 from PyQt5.QtWidgets import QApplication,QWidget,QPlainTextEdit,QMessageBox,QLineEdit
 from PyQt5.QtWidgets import QScrollArea,QVBoxLayout, QAbstractItemView, QListWidget,\
-                        QListWidgetItem, QPushButton, QFileDialog,QDialog,QMainWindow
+                        QListWidgetItem, QPushButton, QFileDialog,QDialog,QMainWindow, QHBoxLayout, QLabel # 14.04.21 added QHBoxLayout, QLabel
 from PyQt5.QtCore import pyqtSlot
 from PyQt5 import uic,QtGui,QtCore
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QPixmap # 14.04.21 added line 8
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import os
+import os, subprocess, platform #16.04.21 added subprocess and platform
 import numpy as np
 import pickle
 
@@ -30,12 +31,6 @@ import pickle
 
 
 from S_engine import Engine; #custom file for computations
-
-
-#to make working exe
-cur_dir=os.path.dirname(os.path.realpath(__file__));
-os.chdir(cur_dir);
-
 
 
 uifile_0 = os.path.join("..","ui","start_window.ui"); # Enter file here.
@@ -108,12 +103,10 @@ class Start(CssMainWindow, form_0):
     def openHelpWindow(self):
         self.helpWin = HelpWin(self.css);
         self.helpWin.show();
-
+        
     def openoutputWindow(self):
         self.outputWin = OutputWin(self.css);
         self.outputWin.show();
-
-
 
 
 class AboutWin(CssDialog, form_1):
@@ -135,10 +128,28 @@ class HelpWin(CssDialog, form_2):
         super().__init__(css_filepath);
         self.setupUi(self)
         self.btnOk.clicked.connect(self.back_startWindow)
+        self.btnOk.clicked.connect(self.openCat)
+        #self.openCat()
+        self.openPDF()
+        
     def back_startWindow(self):
         self.hide()
 
+    def openCat(self):      
+        hbox = QHBoxLayout(self)
+        pixmap = QPixmap("picture.jpg")
+        lbl = QLabel(self)
+        lbl.setPixmap(pixmap)
+        hbox.addWidget(lbl)
+        self.setLayout(hbox)
 
+        self.setWindowTitle('Кися')
+        self.show()
+
+    
+    def openPDF(self):
+        os.startfile("help.pdf")
+       
 class InputWin(CssDialog, form_3):
     def __init__(self,css_filepath):
         super().__init__(css_filepath);
