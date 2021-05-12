@@ -31,8 +31,11 @@ import pickle
 
 from S_engine import Engine; #custom file for computations
 
-print("changing directory to "+os.path.dirname(__file__));
-os.chdir(os.path.dirname(__file__));
+print("changing directory to "+os.path.dirname(os.path.abspath(__file__)));
+
+cur_dir=os.path.dirname(os.path.abspath(__file__));
+print(cur_dir);
+os.chdir(cur_dir);
 
 uifile_0 = os.path.join("..","ui","start_window.ui"); # Enter file here.
 uifile_1 = os.path.join("..","ui","About.ui"); # Enter file here.
@@ -428,6 +431,11 @@ class dataWindow(base_2, form_2):
         model.setVerticalHeaderLabels([str(v) for v in dataframe.index.values.tolist()]);
             
         self.tableView.setModel(model);'''
+
+
+
+
+
 
 if __name__ == '__main__':
     pass;
