@@ -128,24 +128,11 @@ class HelpWin(CssDialog, form_2):
         super().__init__(css_filepath);
         self.setupUi(self)
         self.btnOk.clicked.connect(self.back_startWindow)
-        self.btnOk.clicked.connect(self.openCat)
         #self.openCat()
         self.openPDF()
         
     def back_startWindow(self):
         self.hide()
-
-    def openCat(self):      
-        hbox = QHBoxLayout(self)
-        pixmap = QPixmap("picture.jpg")
-        lbl = QLabel(self)
-        lbl.setPixmap(pixmap)
-        hbox.addWidget(lbl)
-        self.setLayout(hbox)
-
-        self.setWindowTitle('Кися')
-        self.show()
-
     
     def openPDF(self):
         os.startfile("help.pdf")
