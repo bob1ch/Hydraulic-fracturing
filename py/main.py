@@ -116,6 +116,9 @@ class Start(CssMainWindow, form_0):
 class AboutWin(CssDialog, form_1):
     def __init__(self,css_filepath):
         super().__init__(css_filepath);
+        self.la = QLabel('<a style="color:white" href="https://github.com/bob1ch/temporary_name">Переход на GitHub</a>',self)
+        self.la.setOpenExternalLinks(True)
+        self.la.move(230,95)
         self.setupUi(self)
         self.btnOk.clicked.connect(self.back_startWindow)
         
